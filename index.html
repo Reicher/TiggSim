@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TiggSim - Work in progress game and name</title>
+    <style> body { margin: 0; background: #B4D9E7; } </style>
+    <script src="src/phaser.js"></script><!--change for release -->
+    <script src="src/Boot.js"></script>
+    <script src="src/Preloader.js"></script>
+    <script src="src/MainMenu.js"></script>
+    <script src="src/Game.js"></script>
+    <script src="src/Player.js"></script>
+    <script src="src/Folk.js"></script>
+</head>
+<body>
+<script>
+(function() {
+    var game = new Phaser.Game(800, 600, Phaser.AUTO, 'TiggSim');
+    game.state.add('Boot', TS.Boot);
+    game.state.add('Preloader', TS.Preloader);
+    game.state.add('MainMenu', TS.MainMenu);
+    game.state.add('Game', TS.Game);
+    game.state.start('Boot');
+})();
+</script>
+</body>
+</html>
