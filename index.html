@@ -17,7 +17,7 @@
 <body>
 <script>
 (function() {
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, 'TiggSim');
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'TiggSim');
     game.state.add('Boot', TS.Boot);
     game.state.add('Preloader', TS.Preloader);
     game.state.add('MainMenu', TS.MainMenu);

@@ -13,7 +13,9 @@ TS.Preloader.prototype = {
 
 		// load images
 		this.load.image('background', 'assets/background.png');
+		this.load.image('menuBackground', 'assets/background_menu.png');
 		this.load.image('title', 'assets/title.png');
+		this.load.image('car', 'assets/car.png');
 		this.load.image('peng', 'assets/peng.png');
 		this.load.image('glob', 'assets/glob.png');
 
@@ -27,6 +29,11 @@ TS.Preloader.prototype = {
 
 		this.load.spritesheet('player', 'assets/player.png', 32, 48);
 		this.load.spritesheet('folk', 'assets/folk1.png', 32, 48);
+
+		// Load music
+		//  Firefox doesn't support mp3 files, so use ogg
+		this.load.audio('bgMusic', 'assets/audio/bensound-jazzyfrenchy.ogg');
+
 	},
 	create: function(){
 		// start the MainMenu state
