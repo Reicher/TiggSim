@@ -1,8 +1,9 @@
 TS.GameEnd = function(game){};
 TS.GameEnd.prototype = {
-  init: function(wellbeing, money){
+  init: function(wellbeing, money, goalReached){
     this.playerWellbeing = wellbeing;
     this.playerMoney = money;
+    this.goalReached = goalReached;
   },
   create: function(){
 
@@ -13,7 +14,7 @@ TS.GameEnd.prototype = {
     var gameOverText;
     var scoreText;
 
-    if(this.playerWellbeing <= 0)
+    if(this.playerWellbeing <= 0 || !this.goalReached)
       gameOverText = this.add.text(400, 250, 'Game over, du orkar inte mer.', { fontSize: '150', fill: '#FF00FF' });
     else
       gameOverText = this.add.text(400, 250, 'Grattis, du fick ihop lite pengar.', { fontSize: '150', fill: '#FF00FF' });
@@ -23,7 +24,7 @@ TS.GameEnd.prototype = {
     scoreText = this.add.text(400, 320, 'Du fick ihop ' + this.playerMoney + ' kr', { fontSize: '150', fill: '#FF00FF' });
     scoreText.anchor.set(0.5);
 
-    var restartText = this.add.text(400, 400, '(Tryck på nån knapp)', { fontSize: '75', fill: '#FF00FF' });
+    var restartText = this.add.text(400, 400, '(Tryck på mellanslag)', { fontSize: '75', fill: '#FF00FF' });
     restartText.anchor.set(0.5);
 
     var space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);

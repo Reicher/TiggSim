@@ -14,12 +14,12 @@ Folk = function (game, asset) {
     if( game.rnd.integerInRange(0, 1) ){ // vänster till höger
         this.scale.setTo(3, 3);
         this.x = -this.width/2;
-        tween = game.add.tween(this).to({x: this.game.world.width + this.width/2}, speed, Phaser.Easing.Linear.None, false, 100);
+        tween = game.add.tween(this).to({x: this.game.world.width + this.width/2}, speed, Phaser.Easing.Linear.None, false);
     }
     else{ // höger till vänster
         this.scale.setTo(-3, 3);
         this.x = game.width - (this.width/2);
-        tween = game.add.tween(this).to({x: +this.width/2}, speed, Phaser.Easing.Linear.None, false, 100);
+        tween = game.add.tween(this).to({x: +this.width/2}, speed, Phaser.Easing.Linear.None, false);
     }
 
     this.animations.add('walking', [0, 1, 2, 3], 10, true);

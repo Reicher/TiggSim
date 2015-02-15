@@ -6,6 +6,7 @@ TS.Game = function(game){
 	var goodGroup;
 	var badGroup;
 
+	var clock;
 	var moneyText;
 	var wellbeingText;
 };
@@ -21,9 +22,13 @@ TS.Game.prototype = {
 		background.scale.setTo(10, 10);
 
 		// Spelare
-		this.moneyGoal = 1;
+		this.moneyGoal = 5;
 		this.player = new Player(this.game);
 		this.game.add.existing(this.player);
+
+		// Clock (timer)
+		this.clock = new Clock(this.game, 690, 50, 20000);
+		this.game.add.existing(this.clock);
 
 		// create group for good things
 		this.goodGroup = this.game.add.group();
@@ -45,8 +50,8 @@ TS.Game.prototype = {
 	update: function(){
 
 		if(	 this.player.wellbeing <= 0
-			|| this.player.money >= this.moneyGoal ){
-			this.state.start('GameEnd', true, false, this.player.wellbeing, this.player.money);
+			|| this.clock.timeUp ){
+			this.state.start('GameEnd', true, false, this.player.wellbeing, this.player.money, this.player.money >= this.moneyGoal);
 		}
 
 		this.player.update();
