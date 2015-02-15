@@ -1,6 +1,6 @@
 Player = function (game) {
   this.money = 0;
-  this.wellbeing = 10;
+  this.wellbeing = 1;
 
   this.cursors = game.input.keyboard.createCursorKeys();
 

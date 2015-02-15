@@ -1,6 +1,7 @@
 TS.Game = function(game){
 	// define needed variables for TS.Game
 	var player;
+	var moneyGoal;
 
 	var goodGroup;
 	var badGroup;
@@ -20,6 +21,7 @@ TS.Game.prototype = {
 		background.scale.setTo(10, 10);
 
 		// Spelare
+		this.moneyGoal = 1;
 		this.player = new Player(this.game);
 		this.game.add.existing(this.player);
 
@@ -37,10 +39,16 @@ TS.Game.prototype = {
 		this.createFolk();
 
 		// Set money and health text
-		this.moneyText = this.game.add.text(16, 16, 'Pengar: ' + this.player.money + ' kr', { fontSize: '32px', fill: '#000' });
+		this.moneyText = this.game.add.text(16, 16, 'Pengar: ' + this.player.money + ' / ' + this.moneyGoal + ' kr', { fontSize: '32px', fill: '#000' });
 		this.wellbeingText = this.game.add.text(16, 40, 'Hälsa: ' + this.player.wellbeing, { fontSize: '32px', fill: '#000' });
 	},
 	update: function(){
+
+		if(	 this.player.wellbeing <= 0
+			|| this.player.money >= this.moneyGoal ){
+			this.state.start('GameEnd', true, false, this.player.wellbeing, this.player.money);
+		}
+
 		this.player.update();
 
 		this.game.physics.arcade.overlap(	this.player,
@@ -73,7 +81,7 @@ TS.Game.prototype = {
 	},
 	gotMoney: function (player, money){
 		this.player.money += 1;
-		this.moneyText.text = 'Pengar: ' + this.player.money + ' kr';
+		this.moneyText.text = 'Pengar: ' + this.player.money + ' / ' + this.moneyGoal + ' kr';
 		money.kill();
 	},
 	gotHurt: function (player, hurtingThing){
