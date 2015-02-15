@@ -33,7 +33,10 @@ Folk = function (game, asset) {
     // Trow cash
     var timer = game.time.create(game);
 
-    timer.add(4000, function () { this.throwAsset(asset) }, this);
+    if(asset){ // if they have something on them
+      asset.visible = false; // hide it
+      timer.add(game.rnd.integerInRange(0, speed), function () { this.throwAsset(asset) }, this);
+    }
 
     timer.start();
     this.animations.play('walking');

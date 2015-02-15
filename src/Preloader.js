@@ -15,6 +15,7 @@ TS.Preloader.prototype = {
 		this.load.image('background', 'assets/background.png');
 		this.load.image('title', 'assets/title.png');
 		this.load.image('peng', 'assets/peng.png');
+		this.load.image('glob', 'assets/glob.png');
 
 		// load spritesheets
 		this.load.spritesheet('button-start', 'assets/button-start.png', 200, 100);
