@@ -27,7 +27,7 @@ TS.Game.prototype = {
 		this.game.add.existing(this.player);
 
 		// Clock (timer)
-		this.clock = new Clock(this.game, 690, 50, 20000);
+		this.clock = new Clock(this.game, 720, 50, 20000);
 		this.game.add.existing(this.clock);
 
 		// create group for good things
@@ -44,8 +44,8 @@ TS.Game.prototype = {
 		this.createFolk();
 
 		// Set money and health text
-		this.moneyText = this.game.add.text(16, 16, 'Pengar: ' + this.player.money + ' / ' + this.moneyGoal + ' kr', { fontSize: '32px', fill: '#000' });
-		this.wellbeingText = this.game.add.text(16, 40, 'Hälsa: ' + this.player.wellbeing, { fontSize: '32px', fill: '#000' });
+		this.moneyText = this.game.add.text(16, 520, 'Pengar: ' + this.player.money + ' / ' + this.moneyGoal + ' kr', { fontSize: '32px', fill: '#000' });
+		this.wellbeingText = this.game.add.text(16, 540, 'Hälsa: ' + this.player.wellbeing, { fontSize: '32px', fill: '#000' });
 	},
 	update: function(){
 

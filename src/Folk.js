@@ -1,7 +1,10 @@
 Folk = function (game, asset) {
 
-    var height = 150 + game.rnd.integerInRange(0, 150);
+    var height = 110 + game.rnd.integerInRange(0, 160);
     var speed = game.rnd.integerInRange(5000, 15000)
+
+    //var aBitmap = game.make.bitmapData(148, 48);
+    //aBitmap.draw('folk', 0, 0, 148, 48);
     Phaser.Sprite.call(this, game, 0, height, 'folk');
     //this.tint = 0xff00ff;
 
