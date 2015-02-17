@@ -3,6 +3,7 @@ Player = function (game) {
   this.wellbeing = 1;
 
   this.cursors = game.input.keyboard.createCursorKeys();
+  this.game = game; // is this needed?
 
   Phaser.Sprite.call(this, game, 32, game.world.height - 90, 'player');
   this.scale.setTo(3, 3);
@@ -19,14 +20,18 @@ Player.prototype.update = function() {
    //  Reset the players velocity (movement)
   this.body.velocity.x = 0;
 
-  if (this.cursors.left.isDown)
+  if (this.cursors.left.isDown
+    || (this.game.input.mousePointer.isDown
+        && this.game.input.mousePointer.x < this.x))
   {
       //  Move to the left
       this.body.velocity.x = -180;
       this.animations.play('run');
       this.scale.setTo(-3, 3);
   }
-  else if (this.cursors.right.isDown)
+  else if (this.cursors.right.isDown
+    || (this.game.input.mousePointer.isDown
+        && this.game.input.mousePointer.x > this.x))
   {
       //  Move to the right
       this.body.velocity.x = 180;

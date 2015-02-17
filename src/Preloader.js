@@ -6,7 +6,7 @@ TS.Preloader = function(game){
 TS.Preloader.prototype = {
 	preload: function(){
 		// set background color and preload image
-		this.stage.backgroundColor = '#B4D9E7';
+		this.stage.backgroundColor = '#000000';
 		this.preloadBar = this.add.sprite((TS.GAME_WIDTH-311)/2,
 										  (TS.GAME_HEIGHT-27)/2, 'preloaderBar');
 		this.load.setPreloadSprite(this.preloadBar);
