@@ -25,7 +25,7 @@ TS.MainMenu.prototype = {
 
 		if(!this.music){
 			this.music = this.game.add.audio('bgMusic', 1, true);
-			//this.music.play();
+			this.music.play();
 		}
 	},
 	startGame: function() {
