@@ -27,7 +27,7 @@ TS.Game.prototype = {
 		this.game.add.existing(this.player);
 
 		// Clock (timer)
-		this.clock = new Clock(this.game, 720, 50, 2000);
+		this.clock = new Clock(this.game, 720, 50, 25000);
 		this.game.add.existing(this.clock);
 
 		// create group for good things
