@@ -1,6 +1,6 @@
 TS.GameEnd = function(game){
   var car;
-
+  var ending = false; // Stooopid
 };
 TS.GameEnd.prototype = {
   init: function(wellbeing, money, goalReached){
@@ -34,6 +34,7 @@ TS.GameEnd.prototype = {
     restartText.anchor.set(0.5);
 
     this.game.input.onDown.add(this.startBack, this);
+
   },
   restartGame: function() {
     this.game.world.alpha = 255;
@@ -43,6 +44,10 @@ TS.GameEnd.prototype = {
 		this.background.tilePosition.x -= 0.5;
 	},
   startBack: function() {
+    if(this.ending)
+      return;
+
+    this.ending = true;
     this.game.add.tween(this.car).to({x: 0}, 1500, Phaser.Easing.Quadratic.In, true, 200);
 
     // NO IDEA why the fade only works on main menu...

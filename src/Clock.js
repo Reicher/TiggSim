@@ -24,4 +24,4 @@ Clock = function (game, x, y, gameTime) {
 };
 
 Clock.prototype = Object.create(Phaser.Group.prototype);
-Clock.prototype.constructor = Player;
+Clock.prototype.constructor = Clock;

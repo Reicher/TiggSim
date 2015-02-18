@@ -1,14 +1,14 @@
 TS.Game = function(game){
 	// define needed variables for TS.Game
 	var player;
-	var moneyGoal;
 
 	var goodGroup;
 	var badGroup;
 
 	var clock;
-	var moneyText;
-	var wellbeingText;
+
+	var coinSound1, coinSound2;
+	var spitSound1, spitSound2;
 };
 
 TS.Game.prototype = {
@@ -21,14 +21,22 @@ TS.Game.prototype = {
 		var background = this.add.sprite(0, 0, 'background');
 		background.scale.setTo(10, 10);
 
+		this.coinSound1 = this.game.add.audio('coin1', 1, false);
+		this.coinSound2 = this.game.add.audio('coin2', 1, false);
+		this.spitSound1 = this.game.add.audio('spit1', 1, false);
+		this.spitSound2 = this.game.add.audio('spit2', 1, false);
+
 		// Spelare
-		this.moneyGoal = 5;
 		this.player = new Player(this.game);
 		this.game.add.existing(this.player);
 
 		// Clock (timer)
 		this.clock = new Clock(this.game, 720, 50, 25000);
 		this.game.add.existing(this.clock);
+
+		// Infobox
+		this.infoBox = new InfoBox(this.game, 20, 520, this.player.moneyGoal, this.player.maxHealth);
+		this.game.add.existing(this.infoBox);
 
 		// create group for good things
 		this.goodGroup = this.game.add.group();
@@ -42,10 +50,6 @@ TS.Game.prototype = {
 
 		//  Start our folk-loop
 		this.createFolk();
-
-		// Set money and health text
-		this.moneyText = this.game.add.text(16, 520, 'Pengar: ' + this.player.money + ' / ' + this.moneyGoal + ' kr', { fontSize: '32px', fill: '#000' });
-		this.wellbeingText = this.game.add.text(16, 540, 'Hälsa: ' + this.player.wellbeing, { fontSize: '32px', fill: '#000' });
 	},
 	update: function(){
 
@@ -71,13 +75,19 @@ TS.Game.prototype = {
 	createFolk: function(){
 		var naughtiness = this.game.rnd.integerInRange(0, 100);
 		var stuff;
+		var throwSound;
 
-		if(naughtiness < 30)
+		if(naughtiness < 40)
 			stuff = this.goodGroup.create(0, 0, 'peng');
-		else if(naughtiness > 90)
+		else if(naughtiness > 80){
 			stuff = this.badGroup.create(0, 0, 'glob');
+			if(this.game.rnd.integerInRange(0, 1))
+				throwSound = this.spitSound1;
+			else
+				throwSound = this.spitSound2;
+		}
 
-		var p = new Folk(this.game, stuff); // send some money with them
+		var p = new Folk(this.game, stuff, throwSound);
 		this.game.add.existing(p);
 
 		var timer = this.game.time.create(this.game);
@@ -86,12 +96,18 @@ TS.Game.prototype = {
 	},
 	gotMoney: function (player, money){
 		this.player.money += 1;
-		this.moneyText.text = 'Pengar: ' + this.player.money + ' / ' + this.moneyGoal + ' kr';
+		this.infoBox.setMoney(this.player.money);
 		money.kill();
+
+		if(this.game.rnd.integerInRange(0, 1))
+			this.coinSound1.play();
+		else
+			this.coinSound2.play();
+
 	},
 	gotHurt: function (player, hurtingThing){
 		this.player.wellbeing -= 1;
-		this.wellbeingText.text = 'Hälsa: ' + this.player.wellbeing;
+		this.infoBox.setHealth(this.player.wellbeing);
 		hurtingThing.kill();
 	}
 };

@@ -1,11 +1,13 @@
 Player = function (game) {
   this.money = 0;
-  this.wellbeing = 1;
+  this.moneyGoal = 25;
+  this.wellbeing = 10;
+  this.maxHealth = 10;
 
   this.cursors = game.input.keyboard.createCursorKeys();
   this.game = game; // is this needed?
 
-  Phaser.Sprite.call(this, game, 32, game.world.height - 90, 'player');
+  Phaser.Sprite.call(this, game, 400, game.world.height - 90, 'player');
   this.scale.setTo(3, 3);
   this.anchor.setTo(0.5);
   game.physics.arcade.enable(this);
@@ -21,8 +23,8 @@ Player.prototype.update = function() {
   this.body.velocity.x = 0;
 
   if (this.cursors.left.isDown
-    || (this.game.input.mousePointer.isDown
-        && this.game.input.mousePointer.x < this.x))
+    || (this.game.input.activePointer.isDown
+        && this.game.input.x < this.x-20))
   {
       //  Move to the left
       this.body.velocity.x = -180;
@@ -30,8 +32,8 @@ Player.prototype.update = function() {
       this.scale.setTo(-3, 3);
   }
   else if (this.cursors.right.isDown
-    || (this.game.input.mousePointer.isDown
-        && this.game.input.mousePointer.x > this.x))
+    || (this.game.input.activePointer.isDown
+        && this.game.input.x > this.x+20))
   {
       //  Move to the right
       this.body.velocity.x = 180;
@@ -45,5 +47,4 @@ Player.prototype.update = function() {
       this.frame = 5;
       this.scale.setTo(2.5, 2.5);
   }
-
 };

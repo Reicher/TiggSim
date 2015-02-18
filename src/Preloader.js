@@ -18,6 +18,7 @@ TS.Preloader.prototype = {
 		this.load.image('car', 'assets/car.png');
 		this.load.image('peng', 'assets/peng.png');
 		this.load.image('glob', 'assets/glob.png');
+		this.load.image('infoBox', 'assets/roundedRect.png');
 
 		// so much easier
 		this.load.image('clock', 'assets/clock.png');
@@ -33,6 +34,11 @@ TS.Preloader.prototype = {
 		// Load music
 		//  Firefox doesn't support mp3 files, so use ogg
 		this.load.audio('bgMusic', 'assets/audio/bensound-jazzyfrenchy.ogg');
+
+		this.load.audio('coin1', 'assets/audio/Coin1.ogg');
+		this.load.audio('coin2', 'assets/audio/Coin2.ogg');
+		this.load.audio('spit1', 'assets/audio/Spit1.ogg');
+		this.load.audio('spit2', 'assets/audio/Spit2.ogg');
 
 	},
 	create: function(){

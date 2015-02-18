@@ -14,7 +14,7 @@ TS.MainMenu.prototype = {
 		var title = this.add.sprite((TS.GAME_WIDTH-200)/2, 30, 'title');
 		title.scale.setTo(5, 5);
 
-		var aboutText = this.add.text(400, 220, 'v0.2 by Robin Reicher', { fontSize: '5', fill: '#AAAAAA' });
+		var aboutText = this.add.text(400, 220, 'v0.2.1 by Robin Reicher', { fontSize: '5', fill: '#AAAAAA' });
 
 		this.car = this.add.sprite(60, 320, 'car');
 		this.car.scale.setTo(4, 4);
@@ -24,9 +24,11 @@ TS.MainMenu.prototype = {
 		this.startButton = this.add.button(TS.GAME_WIDTH-220, TS.GAME_HEIGHT-130, 'button-start', this.onStartClick, this, 1, 0, 2);
 
 		if(!this.music){
-			this.music = this.game.add.audio('bgMusic', 1, true);
+			this.music = this.game.add.audio('bgMusic', 0.9, true);
 			this.music.play();
 		}
+		else
+			this.music.volume = 1.0;
 	},
 	startGame: function() {
 		this.game.world.alpha = 255;
@@ -39,8 +41,9 @@ TS.MainMenu.prototype = {
 	onStartClick: function() {
 		this.startButton.visible = false;
 
+		this.game.add.tween(this.music).to({volume: 0.3}, 2500, Phaser.Easing.Linear.None, true, 200);
 		this.game.add.tween(this.car).to({x: '800'}, 1500, Phaser.Easing.Quadratic.In, true, 200);
-		var fadeTween = this.game.add.tween(this.game.world).to({alpha: 0}, 1500, Phaser.Easing.Linear.None, false, 1200);
+		var fadeTween = this.game.add.tween(this.game.world).to({alpha: 0}, 1500, Phaser.Easing.Linear.None, false, 1000);
 		fadeTween.onComplete.add(this.startGame, this);
 		fadeTween.start();
 	}

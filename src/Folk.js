@@ -1,17 +1,12 @@
-Folk = function (game, asset) {
+Folk = function (game, asset, throwSound) {
 
     var height = 110 + game.rnd.integerInRange(0, 160);
     var speed = game.rnd.integerInRange(5000, 15000)
 
-    //var aBitmap = game.make.bitmapData(148, 48);
-    //aBitmap.draw('folk', 0, 0, 148, 48);
     Phaser.Sprite.call(this, game, 0, height, 'folk');
-    //this.tint = 0xff00ff;
-
     this.anchor.setTo(0.5);
 
     var tween;
-    var dead = false;
 
     // 50-50 går från höger eller vänster
     if( game.rnd.integerInRange(0, 1) ){ // vänster till höger
@@ -35,6 +30,7 @@ Folk = function (game, asset) {
 
     // Trow cash
     var timer = game.time.create(game);
+    this.throwSound = throwSound;
 
     if(asset){ // if they have something on them
       asset.visible = false; // hide it
@@ -49,6 +45,13 @@ Folk = function (game, asset) {
       asset.y = this.y;
       asset.body.velocity.y = 100;
       asset.visible = true;
+
+      if(this.throwSound)
+        this.throwSound.play();
+    };
+
+    this.setThrowSound = function(ThrowSound){
+
     };
 };
 
