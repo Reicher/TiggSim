@@ -5,10 +5,9 @@ InfoBox = function (game, x, y, moneyGoal, maxLife) {
 
   this.moneyGoal = moneyGoal;
   this.maxLife = maxLife;
-  console.log(maxLife);
 
   var back = this.create(0, 0, 'infoBox');
-  back.alpha = 0.2; // funkar?
+  back.alpha = 0.90;
   back.scale.setTo(1.5, 1);
 
   this.moneyText = game.add.text(75, 5, '0 / ' + moneyGoal + ' kr', { font: "22px Arial", fill: "#000000" });
@@ -21,7 +20,6 @@ InfoBox = function (game, x, y, moneyGoal, maxLife) {
   this.health.drawRect(10, 30, 130, 20);
 
   this.add(this.health);
-
 };
 
 InfoBox.prototype = Object.create(Phaser.Group.prototype);
