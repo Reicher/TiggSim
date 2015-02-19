@@ -31,7 +31,7 @@ TS.Game.prototype = {
 		this.game.add.existing(this.player);
 
 		// Clock (timer)
-		this.clock = new Clock(this.game, 720, 50, 2500);
+		this.clock = new Clock(this.game, 720, 50, 25000);
 		this.game.add.existing(this.clock);
 
 		// Infobox
@@ -58,7 +58,7 @@ TS.Game.prototype = {
 
 		if(	 this.player.wellbeing <= 0
 			|| this.clock.timeUp ){
-			this.state.start('GameEnd', true, false, this.player.wellbeing, this.player.money, this.player.money >= this.moneyGoal);
+			this.state.start('GameEnd', true, false, this.player.wellbeing, this.player.money, this.player.money >= this.player.moneyGoal);
 		}
 
 		this.player.update();
@@ -98,7 +98,7 @@ TS.Game.prototype = {
 		timer.start();
 	},
 	gotMoney: function (player, money){
-		this.player.money += 1;
+		this.player.money += this.game.rnd.integerInRange(1, 15);
 		this.infoBox.setMoney(this.player.money);
 		money.kill();
 

@@ -1,6 +1,6 @@
 Player = function (game) {
   this.money = 0;
-  this.moneyGoal = 25;
+  this.moneyGoal = 75;
   this.wellbeing = 10;
   this.maxHealth = 10;
 

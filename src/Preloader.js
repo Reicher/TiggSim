@@ -16,6 +16,7 @@ TS.Preloader.prototype = {
 		this.load.image('menuBackground', 'assets/background_menu.png');
 		this.load.image('title', 'assets/title.png');
 		this.load.image('car', 'assets/car.png');
+		this.load.image('carWorse', 'assets/car_worse.png');
 		this.load.image('peng', 'assets/peng.png');
 		this.load.image('glob', 'assets/glob.png');
 		this.load.image('infoBox', 'assets/roundedRect.png');
@@ -29,7 +30,9 @@ TS.Preloader.prototype = {
 		this.load.spritesheet('button-start', 'assets/button-start.png', 200, 100);
 
 		this.load.spritesheet('player', 'assets/player.png', 32, 48);
-		this.load.spritesheet('folk', 'assets/folk2.png', 32, 48);
+		this.load.spritesheet('folk1', 'assets/folk1.png', 32, 48);
+		this.load.spritesheet('folk2', 'assets/folk2.png', 32, 48);
+		this.load.spritesheet('folk3', 'assets/folk3.png', 32, 48);
 
 		// Load music
 		//  Firefox doesn't support mp3 files, so use ogg
