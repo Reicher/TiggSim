@@ -35,9 +35,9 @@ TS.Game.prototype = {
 		this.clock = new Clock(this.game, 720, 50, 25000);
 		this.game.add.existing(this.clock);
 
-		// Infobox
-		this.infoBox = new InfoBox(this.game, 20, 520, this.player.moneyGoal, this.player.maxHealth);
-		this.game.add.existing(this.infoBox);
+		// statusBox
+		this.statusBox = new StatusBox(this.game, 20, 520, this.player.moneyGoal, this.player.maxHealth);
+		this.game.add.existing(this.statusBox);
 
 		// create group for good things
 		this.goodGroup = this.game.add.group();
@@ -89,22 +89,22 @@ TS.Game.prototype = {
 		else if(naughtiness > 80){
 			stuff = this.badGroup.create(0, 0, 'glob');
 			if(this.game.rnd.integerInRange(0, 1))
-				throwSound = this.spitSound1;
+				stuff.throwSound = this.spitSound1;
 			else
-				throwSound = this.spitSound2;
+				stuff.throwSound = this.spitSound2;
 		}
 
-		var p = new Folk(this.game, stuff, throwSound);
+		var p = new People(this.game, stuff, throwSound);
 		this.game.add.existing(p);
 		this.byPassers.add(p);
 
 		var timer = this.game.time.create(this.game);
-		timer.add(this.game.rnd.integerInRange(500, 2000), this.createFolk, this);
+		timer.add(this.game.rnd.integerInRange(200, 1500), this.createFolk, this);
 		timer.start();
 	},
 	gotMoney: function (player, money){
 		this.player.money += this.game.rnd.integerInRange(1, 15);
-		this.infoBox.setMoney(this.player.money);
+		this.statusBox.setMoney(this.player.money);
 		money.kill();
 
 		if(this.game.rnd.integerInRange(0, 1))
@@ -115,7 +115,7 @@ TS.Game.prototype = {
 	},
 	gotHurt: function (player, hurtingThing){
 		this.player.wellbeing -= 1;
-		this.infoBox.setHealth(this.player.wellbeing);
+		this.statusBox.setHealth(this.player.wellbeing);
 		hurtingThing.kill();
 	}
 };

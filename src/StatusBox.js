@@ -1,4 +1,4 @@
-InfoBox = function (game, x, y, moneyGoal, maxLife) {
+StatusBox = function (game, x, y, moneyGoal, maxLife) {
   Phaser.Group.call(this, game);
   this.x = x;
   this.y = y;
@@ -6,7 +6,7 @@ InfoBox = function (game, x, y, moneyGoal, maxLife) {
   this.moneyGoal = moneyGoal;
   this.maxLife = maxLife;
 
-  var back = this.create(0, 0, 'infoBox');
+  var back = this.create(0, 0, 'statusBox');
   back.alpha = 0.90;
   back.scale.setTo(1.5, 1);
 
@@ -22,14 +22,14 @@ InfoBox = function (game, x, y, moneyGoal, maxLife) {
   this.add(this.health);
 };
 
-InfoBox.prototype = Object.create(Phaser.Group.prototype);
-InfoBox.prototype.constructor = InfoBox;
+StatusBox.prototype = Object.create(Phaser.Group.prototype);
+StatusBox.prototype.constructor = StatusBox;
 
-InfoBox.prototype.setMoney = function(money) {
+StatusBox.prototype.setMoney = function(money) {
   this.moneyText.text = money + ' / ' + this.moneyGoal + ' kr';
 };
 
-InfoBox.prototype.setHealth = function(health) {
+StatusBox.prototype.setHealth = function(health) {
   // Is this really needed?
   this.health.destroy();
   this.health = this.game.add.graphics(0, 0);

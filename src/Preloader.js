@@ -19,21 +19,21 @@ TS.Preloader.prototype = {
 		this.load.image('carWorse', 'assets/car_worse.png');
 		this.load.image('peng', 'assets/peng.png');
 		this.load.image('glob', 'assets/glob.png');
-		this.load.image('infoBox', 'assets/roundedRect.png');
+		this.load.image('statusBox', 'assets/roundedRect.png');
 
 		// so much easier
 		this.load.image('clock', 'assets/clock.png');
 		this.load.image('clock_h', 'assets/clock_h.png');
 		this.load.image('clock_m', 'assets/clock_m.png');
 
+		this.load.image('folk1', 'assets/folk1.png');
+		this.load.image('folk2', 'assets/folk2.png');
+		this.load.image('folk3', 'assets/folk3.png');
+		this.load.image('folk4', 'assets/folk4.png');
+
 		// load spritesheets
 		this.load.spritesheet('button-start', 'assets/button-start.png', 200, 100);
-
 		this.load.spritesheet('player', 'assets/player.png', 32, 48);
-		this.load.spritesheet('folk1', 'assets/folk1.png');
-		this.load.spritesheet('folk2', 'assets/folk2.png');
-		this.load.spritesheet('folk3', 'assets/folk3.png');
-		this.load.spritesheet('folk4', 'assets/folk4.png');
 
 		// Load music
 		//  Firefox doesn't support mp3 files, so use ogg
@@ -41,6 +41,7 @@ TS.Preloader.prototype = {
 
 		this.load.audio('coin1', 'assets/audio/Coin1.ogg');
 		this.load.audio('coin2', 'assets/audio/Coin2.ogg');
+
 		this.load.audio('spit1', 'assets/audio/Spit1.ogg');
 		this.load.audio('spit2', 'assets/audio/Spit2.ogg');
 

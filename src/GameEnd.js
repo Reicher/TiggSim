@@ -12,7 +12,7 @@ TS.GameEnd.prototype = {
     this.background = this.add.tileSprite(800, 0, 160, 60, 'menuBackground');
     this.background.scale.setTo(-10, 10);
 
-    var back = this.add.sprite(50, 80, 'infoBox');
+    var back = this.add.sprite(50, 80, 'statusBox');
     back.scale.setTo(5, 5);
     back.alpha = 0.9;
 
