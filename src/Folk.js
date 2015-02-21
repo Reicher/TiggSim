@@ -3,17 +3,37 @@ Folk = function (game, asset, throwSound) {
     var height = 110 + game.rnd.integerInRange(0, 160);
     var speed = game.rnd.integerInRange(4000, 12000)
 
-    var folkNr = game.rnd.integerInRange(0, 2);
-    if(folkNr == 0)
-      Phaser.Sprite.call(this, game, 0, height, 'folk1');
-    else if(folkNr == 1)
-      Phaser.Sprite.call(this, game, 0, height, 'folk2');
-    else if(folkNr == 2)
-      Phaser.Sprite.call(this, game, 0, height, 'folk3');
+    bmd = game.make.bitmapData(128, 48);
+
+    // Random sprite
+    var spriteSheets =['folk1', 'folk2', 'folk3'];
+    bmd.load(game.rnd.pick(spriteSheets));
+
+    // Random Skin tone
+    var Tones =[{r: 255, g: 229, b: 200},
+                {r: 255, g: 195, b: 170},
+                {r: 150, g: 114, b: 100},
+                {r: 120, g: 92,  b: 80}];
+    var skinTone = game.rnd.pick(Tones);
+    bmd.replaceRGB(123, 123, 123, 255,
+        skinTone.r,skinTone.g, skinTone.b, 255);
+
+    // Random hair color
+    var Hair =[{r: 44, g: 44, b: 44},
+                {r: 180, g: 160, b: 160},
+                {r: 230, g: 207, b: 168},
+                {r: 185, g: 151,  b: 120},
+                {r: 180, g: 80,  b: 50},
+                {r: 145, g: 85,  b: 61}];
+    var hairColor = game.rnd.pick(Hair);
+    bmd.replaceRGB(0, 100, 200, 255,
+      hairColor.r,hairColor.g, hairColor.b, 255);
+
+    game.cache.addSpriteSheet('dynamic', '', bmd.canvas, 32, 48, 4, 0, 0);
+    Phaser.Sprite.call(this, game, 0, height, 'dynamic');
     this.anchor.setTo(0.5);
 
     var tween;
-
     // 50-50 går från höger eller vänster
     if( game.rnd.integerInRange(0, 1) ){ // vänster till höger
         this.scale.setTo(3, 3);
@@ -49,7 +69,7 @@ Folk = function (game, asset, throwSound) {
     this.throwAsset = function(asset){
       asset.x = this.x;
       asset.y = this.y;
-      asset.body.velocity.y = 100;
+      asset.body.velocity.y = 150;
       asset.visible = true;
 
       if(this.throwSound)

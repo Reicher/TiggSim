@@ -32,7 +32,7 @@ TS.GameEnd.prototype = {
     var restartText = this.add.text(300, 350, '(Tryck för att försöka igen)', { font: "20px Arial" });
     restartText.anchor.set(0.5);
 
-    this.car = this.add.sprite(400, 320, 'carWorse');
+    this.car = this.add.sprite(400, 270, 'carWorse');
     this.car.scale.setTo(4, 4);
     this.game.add.tween(this.car).to({y: '+4'}, 300, Phaser.Easing.Linear.None, true, 0, -1, true);
 

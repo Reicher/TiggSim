@@ -14,9 +14,9 @@ TS.MainMenu.prototype = {
 		var title = this.add.sprite((TS.GAME_WIDTH-200)/2, 30, 'title');
 		title.scale.setTo(5, 5);
 
-		var aboutText = this.add.text(400, 220, 'v0.3 by Punkrockaren Claude', { fontSize: '5', fill: '#AAAAAA' });
+		var aboutText = this.add.text(400, 220, 'v0.4 av Punkrockaren Claude', { fontSize: '5', fill: '#AAAAAA' });
 
-		this.car = this.add.sprite(60, 320, 'car');
+		this.car = this.add.sprite(60, 340, 'car');
 		this.car.scale.setTo(4, 4);
 		this.game.add.tween(this.car).to({y: '+4'}, 300, Phaser.Easing.Linear.None, true, 0, -1, true);
 

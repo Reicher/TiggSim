@@ -1,6 +1,7 @@
 TS.Game = function(game){
 	// define needed variables for TS.Game
 	var player;
+	var byPassers;
 
 	var goodGroup;
 	var badGroup;
@@ -49,6 +50,7 @@ TS.Game.prototype = {
 		this.badGroup.outOfBoundsKill = true;
 
 		//  Start our folk-loop
+		this.byPassers = this.game.add.group();
 		this.createFolk();
 
 		// Show stuff
@@ -74,6 +76,8 @@ TS.Game.prototype = {
 																			null,
 																			this);
 
+		this.byPassers.sort('y', Phaser.Group.SORT_ASCENDING);
+
 	},
 	createFolk: function(){
 		var naughtiness = this.game.rnd.integerInRange(0, 100);
@@ -92,6 +96,7 @@ TS.Game.prototype = {
 
 		var p = new Folk(this.game, stuff, throwSound);
 		this.game.add.existing(p);
+		this.byPassers.add(p);
 
 		var timer = this.game.time.create(this.game);
 		timer.add(this.game.rnd.integerInRange(500, 2000), this.createFolk, this);
