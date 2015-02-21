@@ -6,7 +6,7 @@ Folk = function (game, asset, throwSound) {
     bmd = game.make.bitmapData(128, 48);
 
     // Random sprite
-    var spriteSheets =['folk1', 'folk2', 'folk3'];
+    var spriteSheets =['folk1', 'folk2', 'folk3', 'folk4'];
     bmd.load(game.rnd.pick(spriteSheets));
 
     // Random Skin tone

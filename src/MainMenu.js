@@ -25,7 +25,7 @@ TS.MainMenu.prototype = {
 
 		if(!this.music){
 			this.music = this.game.add.audio('bgMusic', 0.9, true);
-			this.music.play();
+			//this.music.play();
 		}
 		else
 			this.music.volume = 1.0;

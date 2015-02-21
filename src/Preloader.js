@@ -30,9 +30,10 @@ TS.Preloader.prototype = {
 		this.load.spritesheet('button-start', 'assets/button-start.png', 200, 100);
 
 		this.load.spritesheet('player', 'assets/player.png', 32, 48);
-		this.load.spritesheet('folk1', 'assets/folk1.png', 32, 48);
-		this.load.spritesheet('folk2', 'assets/folk2.png', 32, 48);
-		this.load.spritesheet('folk3', 'assets/folk3.png', 32, 48);
+		this.load.spritesheet('folk1', 'assets/folk1.png');
+		this.load.spritesheet('folk2', 'assets/folk2.png');
+		this.load.spritesheet('folk3', 'assets/folk3.png');
+		this.load.spritesheet('folk4', 'assets/folk4.png');
 
 		// Load music
 		//  Firefox doesn't support mp3 files, so use ogg
