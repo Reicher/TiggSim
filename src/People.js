@@ -54,6 +54,7 @@ People = function (game, asset) {
 
     // Trow stuff
     if(asset){
+      asset.anchor.setTo(0.5);
       var timer = game.time.create(game);
       asset.visible = false; // hide it
       timer.add(game.rnd.integerInRange(0, speed), function () { this.throwAsset(asset) }, this);

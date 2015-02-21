@@ -49,6 +49,8 @@ TS.Preloader.prototype = {
 		this.load.audio('spit1', 'assets/audio/Spit1.ogg');
 		this.load.audio('spit2', 'assets/audio/Spit2.ogg');
 
+		this.load.audio('curse', 'assets/audio/Curse.ogg');
+
 	},
 	create: function(){
 		// start the MainMenu state

@@ -10,9 +10,8 @@ TS.Game = function(game){
 
 	var coinSound1, coinSound2;
 	var spitSound1, spitSound2;
+	var curse;
 
-	var coinSounds = [];
-	var spitSounds = [];
 };
 
 TS.Game.prototype = {
@@ -29,6 +28,7 @@ TS.Game.prototype = {
 		this.coinSound2 = this.game.add.audio('coin2', 1, false);
 		this.spitSound1 = this.game.add.audio('spit1', 1, false);
 		this.spitSound2 = this.game.add.audio('spit2', 1, false);
+		this.curse  		= this.game.add.audio('curse', 1, false);
 
 		// Player
 		this.player = new Player(this.game);
@@ -85,7 +85,8 @@ TS.Game.prototype = {
 
 		if(naughtiness > 90){ // Really bad persons throw bricks
 			stuff = this.badGroup.create(0, 0, 'brick')
-			stuff.effect = 3;}
+			stuff.effect = 3;
+			this.game.add.tween(stuff).to({angle: '+360'}, 1000, Phaser.Easing.Linear.None, true, 0, -1, false);}
 		else if(naughtiness > 80){ // Bad persons spit
 			stuff = this.badGroup.create(0, 0, 'glob')
 			stuff.effect = 2;
@@ -96,7 +97,8 @@ TS.Game.prototype = {
 			}
 		else if(naughtiness > 60){ // Many say bad things
 			stuff = this.badGroup.create(0, 0, 'curse')
-			stuff.effect = 1;}
+			stuff.effect = 1;
+			stuff.throwSound = this.curse;}
 		else if(naughtiness < 30){ // Many say bad things
 			stuff = this.goodGroup.create(0, 0, 'peng');
 			stuff.effect = this.game.rnd.integerInRange(1, 15);
