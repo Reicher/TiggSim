@@ -10,6 +10,9 @@ TS.Game = function(game){
 
 	var coinSound1, coinSound2;
 	var spitSound1, spitSound2;
+
+	var coinSounds = [];
+	var spitSounds = [];
 };
 
 TS.Game.prototype = {
@@ -27,12 +30,12 @@ TS.Game.prototype = {
 		this.spitSound1 = this.game.add.audio('spit1', 1, false);
 		this.spitSound2 = this.game.add.audio('spit2', 1, false);
 
-		// Spelare
+		// Player
 		this.player = new Player(this.game);
 		this.game.add.existing(this.player);
 
 		// Clock (timer)
-		this.clock = new Clock(this.game, 720, 50, 25000);
+		this.clock = new Clock(this.game, 720, 50, 60000);
 		this.game.add.existing(this.clock);
 
 		// statusBox
@@ -42,26 +45,22 @@ TS.Game.prototype = {
 		// create group for good things
 		this.goodGroup = this.game.add.group();
 		this.goodGroup.enableBody = true;
-		this.goodGroup.outOfBoundsKill = true;
 
 		// Create group for all bad things
 		this.badGroup = this.game.add.group();
 		this.badGroup.enableBody = true;
-		this.badGroup.outOfBoundsKill = true;
 
 		//  Start our folk-loop
 		this.byPassers = this.game.add.group();
-		this.createFolk();
+		this.createPeople();
 
 		// Show stuff
 		this.game.world.alpha = 255;
 	},
 	update: function(){
 
-		if(	 this.player.wellbeing <= 0
-			|| this.clock.timeUp ){
-			this.state.start('GameEnd', true, false, this.player.wellbeing, this.player.money, this.player.money >= this.player.moneyGoal);
-		}
+		if(	 this.player.wellbeing <= 0 || this.clock.timeUp )
+			this.state.start('GameEnd', true, false, this.player.money >= this.player.moneyGoal);
 
 		this.player.update();
 
@@ -70,51 +69,60 @@ TS.Game.prototype = {
 																			this.gotMoney,
 																			null,
 																			this);
+
 		this.game.physics.arcade.overlap(	this.player,
 																			this.badGroup,
 																			this.gotHurt,
 																			null,
 																			this);
-
+		// draw people on the right level
 		this.byPassers.sort('y', Phaser.Group.SORT_ASCENDING);
 
 	},
-	createFolk: function(){
+	createPeople: function(){
 		var naughtiness = this.game.rnd.integerInRange(0, 100);
 		var stuff;
-		var throwSound;
 
-		if(naughtiness < 40)
-			stuff = this.goodGroup.create(0, 0, 'peng');
-		else if(naughtiness > 80){
-			stuff = this.badGroup.create(0, 0, 'glob');
-			if(this.game.rnd.integerInRange(0, 1))
+		if(naughtiness > 90){ // Really bad persons throw bricks
+			stuff = this.badGroup.create(0, 0, 'brick')
+			stuff.effect = 3;}
+		else if(naughtiness > 80){ // Bad persons spit
+			stuff = this.badGroup.create(0, 0, 'glob')
+			stuff.effect = 2;
+			if(Phaser.Math.chanceRoll())
 				stuff.throwSound = this.spitSound1;
 			else
 				stuff.throwSound = this.spitSound2;
+			}
+		else if(naughtiness > 60){ // Many say bad things
+			stuff = this.badGroup.create(0, 0, 'curse')
+			stuff.effect = 1;}
+		else if(naughtiness < 30){ // Many say bad things
+			stuff = this.goodGroup.create(0, 0, 'peng');
+			stuff.effect = this.game.rnd.integerInRange(1, 15);
 		}
 
-		var p = new People(this.game, stuff, throwSound);
+		var p = new People(this.game, stuff);
 		this.game.add.existing(p);
 		this.byPassers.add(p);
 
 		var timer = this.game.time.create(this.game);
-		timer.add(this.game.rnd.integerInRange(200, 1500), this.createFolk, this);
+		timer.add(this.game.rnd.integerInRange(200, 1500), this.createPeople, this);
 		timer.start();
 	},
 	gotMoney: function (player, money){
-		this.player.money += this.game.rnd.integerInRange(1, 15);
+		this.player.money += money.effect;
 		this.statusBox.setMoney(this.player.money);
 		money.kill();
 
-		if(this.game.rnd.integerInRange(0, 1))
+		if(Phaser.Math.chanceRoll())
 			this.coinSound1.play();
 		else
 			this.coinSound2.play();
 
 	},
 	gotHurt: function (player, hurtingThing){
-		this.player.wellbeing -= 1;
+		this.player.wellbeing -= hurtingThing.effect;
 		this.statusBox.setHealth(this.player.wellbeing);
 		hurtingThing.kill();
 	}

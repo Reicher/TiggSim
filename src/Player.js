@@ -1,8 +1,8 @@
 Player = function (game) {
   this.money = 0;
-  this.moneyGoal = 75;
-  this.wellbeing = 10;
-  this.maxHealth = 10;
+  this.moneyGoal = 150;
+  this.wellbeing = 5;
+  this.maxHealth = 5;
 
   this.cursors = game.input.keyboard.createCursorKeys();
   this.game = game; // is this needed?

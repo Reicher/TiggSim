@@ -2,9 +2,7 @@ TS.GameEnd = function(game){
   var car;
 };
 TS.GameEnd.prototype = {
-  init: function(wellbeing, money, goalReached){
-    this.playerWellbeing = wellbeing;
-    this.playerMoney = money;
+  init: function(goalReached){
     this.goalReached = goalReached;
   },
   create: function(){
@@ -18,7 +16,7 @@ TS.GameEnd.prototype = {
 
     var endText;
     var endExplaination;
-    if(this.playerWellbeing <= 0 || !this.goalReached){
+    if(!this.goalReached){
       endText = this.add.text(300, 110, 'Ingen lycka denna gång!',{ font: "40px Arial"});
       endText.anchor.set(0.5);
       endExplaination = this.add.text(70, 160, 'Du forsätter på samma sätt i \nmånader och lyckas knappt försöja\ndig själv. Det är dags att åka hem\nför den här gången.', { font: "30px Marlett"} );

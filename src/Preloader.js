@@ -15,11 +15,15 @@ TS.Preloader.prototype = {
 		this.load.image('background', 'assets/background.png');
 		this.load.image('menuBackground', 'assets/background_menu.png');
 		this.load.image('title', 'assets/title.png');
+		this.load.image('statusBox', 'assets/roundedRect.png');
+
 		this.load.image('car', 'assets/car.png');
 		this.load.image('carWorse', 'assets/car_worse.png');
+
 		this.load.image('peng', 'assets/peng.png');
 		this.load.image('glob', 'assets/glob.png');
-		this.load.image('statusBox', 'assets/roundedRect.png');
+		this.load.image('curse', 'assets/curse.png');
+		this.load.image('brick', 'assets/brick.png');
 
 		// so much easier
 		this.load.image('clock', 'assets/clock.png');

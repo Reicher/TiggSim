@@ -14,7 +14,7 @@ TS.MainMenu.prototype = {
 		var title = this.add.sprite((TS.GAME_WIDTH-200)/2, 30, 'title');
 		title.scale.setTo(5, 5);
 
-		var aboutText = this.add.text(400, 220, 'v0.4 av Punkrockaren Claude', { fontSize: '5', fill: '#AAAAAA' });
+		var aboutText = this.add.text(400, 220, 'v0.5 av Punkrockaren Claude', { fontSize: '5', fill: '#AAAAAA' });
 
 		this.car = this.add.sprite(60, 340, 'car');
 		this.car.scale.setTo(4, 4);
