@@ -17,12 +17,12 @@ TS.GameEnd.prototype = {
     var endText;
     var endExplaination;
     if(!this.goalReached){
-      endText = this.add.text(300, 110, 'Ingen lycka denna gång!',{ font: "40px Arial"});
+      endText = this.add.text(300, 115, 'Ingen lycka denna gång!',{ font: "40px Arial"});
       endText.anchor.set(0.5);
       endExplaination = this.add.text(70, 160, 'Du forsätter på samma sätt i \nmånader och lyckas knappt försöja\ndig själv. Det är dags att åka hem\nför den här gången.', { font: "30px Marlett"} );
     }
     else{
-      endText = this.add.text(300, 110, 'En lyckad resa!',{ font: "40px Arial"});
+      endText = this.add.text(300, 115, 'En lyckad resa!',{ font: "40px Arial"});
       endText.anchor.set(0.5);
       endExplaination = this.add.text(70, 160, 'Du fortsätter i samma stil och har\nefter en tid lyckats samlat ihop \nlite pengar.', { font: "30px Arial"} );
     }
@@ -35,6 +35,7 @@ TS.GameEnd.prototype = {
     this.game.add.tween(this.car).to({y: '+4'}, 300, Phaser.Easing.Linear.None, true, 0, -1, true);
 
     this.game.input.onDown.add(this.startBack, this);
+    this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(this.startBack, this);
 
   },
   restartGame: function() {

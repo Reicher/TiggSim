@@ -95,11 +95,11 @@ TS.Game.prototype = {
 			else
 				stuff.throwSound = this.spitSound2;
 			}
-		else if(naughtiness > 60){ // Many say bad things
+		else if(naughtiness > 70){ // Many say bad things
 			stuff = this.badGroup.create(0, 0, 'curse')
 			stuff.effect = 1;
 			stuff.throwSound = this.curse;}
-		else if(naughtiness < 30){ // Many say bad things
+		else if(naughtiness < 30){ // some are nice
 			stuff = this.goodGroup.create(0, 0, 'peng');
 			stuff.effect = this.game.rnd.integerInRange(1, 15);
 		}

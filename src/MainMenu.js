@@ -14,7 +14,7 @@ TS.MainMenu.prototype = {
 		var title = this.add.sprite((TS.GAME_WIDTH-200)/2, 30, 'title');
 		title.scale.setTo(5, 5);
 
-		var aboutText = this.add.text(400, 220, 'v0.5 av Punkrockaren Claude', { fontSize: '5', fill: '#AAAAAA' });
+		var aboutText = this.add.text(400, 220, 'v1.0 av Punkrockaren Claude', { fontSize: '5', fill: '#AAAAAA' });
 
 		this.car = this.add.sprite(60, 340, 'car');
 		this.car.scale.setTo(4, 4);
@@ -22,6 +22,7 @@ TS.MainMenu.prototype = {
 
 		// add the button that will start the game
 		this.startButton = this.add.button(TS.GAME_WIDTH-220, TS.GAME_HEIGHT-130, 'button-start', this.onStartClick, this, 1, 0, 2);
+		this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(this.onStartClick, this);
 
 		if(!this.music){
 			this.music = this.game.add.audio('bgMusic', 0.9, true);

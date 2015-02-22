@@ -5,11 +5,11 @@ People = function (game, asset) {
     bmd.load(game.rnd.pick(spriteSheets));
 
     // Skin tone
-    var Tones =[{r: 255, g: 229, b: 200},
+    var Tones =[{r: 68, g: 0, b: 0},
                 {r: 255, g: 195, b: 170},
-                {r: 150, g: 114, b: 100},
+                {r: 165, g: 87, b: 51},
                 {r: 227, g: 161, b: 115},
-                {r: 120, g: 92,  b: 80}];
+                {r: 225, g: 173,  b: 164}];
     var skinTone = game.rnd.pick(Tones);
     bmd.replaceRGB(123, 123, 123, 255,
         skinTone.r,skinTone.g, skinTone.b, 255);
@@ -31,7 +31,7 @@ People = function (game, asset) {
     this.anchor.setTo(0.5);
 
     var tween;
-    var speed = game.rnd.integerInRange(4000, 12000)
+    var speed = game.rnd.integerInRange(10000, 10000)
     // 50-50 går från höger eller vänster
     if( game.rnd.integerInRange(0, 1) ){ // vänster till höger
         this.scale.setTo(3, 3);
