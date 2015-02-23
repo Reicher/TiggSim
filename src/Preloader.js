@@ -16,6 +16,7 @@ TS.Preloader.prototype = {
 		this.load.image('menuBackground', 'assets/background_menu.png');
 		this.load.image('title', 'assets/title.png');
 		this.load.image('statusBox', 'assets/roundedRect.png');
+		this.load.image('TNSlogo', 'assets/TNS_logo.png');
 
 		this.load.image('car', 'assets/car.png');
 		this.load.image('carWorse', 'assets/car_worse.png');
@@ -53,7 +54,7 @@ TS.Preloader.prototype = {
 
 	},
 	create: function(){
-		// start the MainMenu state
-		this.state.start('MainMenu');
+		// start the Splash state
+		this.state.start('Splash');
 	}
 };

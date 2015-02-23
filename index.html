@@ -7,6 +7,7 @@
     <script src="src/phaser.js"></script><!--change for release -->
     <script src="src/Boot.js"></script>
     <script src="src/Preloader.js"></script>
+    <script src="src/Splash.js"></script>
     <script src="src/MainMenu.js"></script>
     <script src="src/GameEnd.js"></script>
     <script src="src/Game.js"></script>
@@ -21,6 +22,7 @@
     var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'TiggSim');
     game.state.add('Boot', TS.Boot);
     game.state.add('Preloader', TS.Preloader);
+    game.state.add('Splash', TS.Splash);
     game.state.add('MainMenu', TS.MainMenu);
     game.state.add('Game', TS.Game);
     game.state.add('GameEnd', TS.GameEnd);
