@@ -8,6 +8,8 @@ TS.Splash.prototype = {
 		var fadeTween = this.game.add.tween(logo).to({alpha: 0}, 1000, Phaser.Easing.Linear.None, false, 3000);
 		fadeTween.onComplete.add(this.startGame, this);
 		fadeTween.start();
+
+		this.game.input.onDown.add(this.startGame, this);
 	},
 	startGame: function() {
 		// start the Game state

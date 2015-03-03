@@ -14,7 +14,9 @@ TS.MainMenu.prototype = {
 		var title = this.add.sprite((TS.GAME_WIDTH-200)/2, 30, 'title');
 		title.scale.setTo(5, 5);
 
-		var aboutText = this.add.text(400, 220, 'v1.0 av Punkrockaren Claude', { fontSize: '5', fill: '#AAAAAA' });
+		this.add.text(400, 220, 'v1.1 av Punkrockaren Claude', { fontSize: '5px', fill: '#AAAAAA' });
+		var musicCred = this.add.text(5, TS.GAME_HEIGHT+5, 'Music: www.bensound.com', { font: "15px Arial"});
+		musicCred.anchor.setTo(0, 1);
 
 		this.car = this.add.sprite(60, 340, 'car');
 		this.car.scale.setTo(4, 4);
